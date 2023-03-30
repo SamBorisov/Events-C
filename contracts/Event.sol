@@ -35,7 +35,7 @@ contract EventContract is ERC1155, Ownable {
     // handle getting tickets
     function mint(address _to, uint256 _id, uint256 _amount, bytes memory _data) internal  {
         _mint(_to, _id, _amount, _data);
-    }
+    } 
 
     function buyTickets(uint256 _amount) public payable {
         require(msg.value >= priceForEvent * _amount, "Not enough ETH");
@@ -51,10 +51,6 @@ contract EventContract is ERC1155, Ownable {
             if (!alreadyInList) {
                 addressList.push(msg.sender);
             }
-    }
-
-    function getTicketBalance() public view returns (uint256) {
-        return balanceOf(msg.sender, 1);
     }
 
     // after event end
@@ -81,15 +77,25 @@ contract EventContract is ERC1155, Ownable {
         return winner;
     }
 
+    //View functions
+    function getTicketBalance() public view returns (uint256) {
+        return balanceOf(msg.sender, 1);
+    }
+
     function getLuckyWinnerAddress() public view returns (address) {
         return luckyWinner;
     }
 
-    
+    function getUri() public view returns (string memory) {
+        return uri;
+    }  
 
-    //helpers
     function getCurrentTimestamp() public view returns (uint256) {
         return block.timestamp;
+    }
+
+    function getEndTimestamp() public view returns (uint256) {
+        return endTicketSale;
     }
 }
 
