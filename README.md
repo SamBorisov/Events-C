@@ -19,7 +19,7 @@
 - Compile the contracts: `npx hardhat compile`
 - Set a local node: `npx hardhat node`
 - Deploy to localhost: `npx hardhat run .\scripts\deploy.js`
-- Connect your Metamask wallet to localhost (if not set). 
+- Connect your Metamask wallet to localhost (if not set). <br>
 ![image](https://user-images.githubusercontent.com/88675952/229177094-acde568b-94a7-4c93-9f69-6e15a3513c61.png)
 - Insert a private key from the Hardhat node with ether to Metamask to interact with the contracts.
 ![image](https://user-images.githubusercontent.com/88675952/229177869-0aa97b9f-99e7-4d13-9352-a218421d599d.png)
