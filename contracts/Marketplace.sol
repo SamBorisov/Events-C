@@ -15,6 +15,7 @@ contract ContractFactory {
         address eventOwner = eventContract.owner();
         emit EventContractCreated(eventAddress, msg.sender);
         eventContracts.push(eventContract);
+        eventContract.transferOwnership(msg.sender);
         return (eventAddress, eventOwner);
     }
 

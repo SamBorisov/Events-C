@@ -70,6 +70,7 @@ contract EventContract is ERC1155, Ownable {
         require(addressList.length > 0, "No one has bought tickets");
         require(!luckyWinnerChosen, "Lucky winner already chosen");
         uint256 randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % addressList.length;
+        //uint256 randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % addressList.length;  //For remixIDE
         address winner = addressList[randomNumber];
         luckyWinner = winner;
         mint(winner, 1 , 1, uriBytes);
@@ -105,9 +106,10 @@ contract EventContract is ERC1155, Ownable {
     function getEventDetails() public view returns (string memory) {
         return aboutEvent;
     }  
-    
+
     function getEventPrice() public view returns (uint256) {
         return priceForEvent;
     }  
+
 }
 
