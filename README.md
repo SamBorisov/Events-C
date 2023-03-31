@@ -1,6 +1,8 @@
 # Event Factory
-### This project consists of 2 contracts:
 
+Front-End - `https://github.com/SamBorisov/event-fe` 
+
+### This project consists of 2 contracts:
 - Marketplace.sol: a proxy factory that deploys a new event contract with specific details and sets the sender of the function as the owner of the new contract.
 - Event.sol: saves event details, allows users to buy tickets at a specific price, choose a lucky winner at the end of the event, and allows the owner to withdraw their profit from the sale.
 ## Usage
