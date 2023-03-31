@@ -97,5 +97,17 @@ contract EventContract is ERC1155, Ownable {
     function getEndTimestamp() public view returns (uint256) {
         return endTicketSale;
     }
+
+    function getEventName() public view returns (string memory) {
+        return nameOfEvent;
+    }  
+
+    function getEventDetails() public view returns (string memory) {
+        return aboutEvent;
+    }  
+    
+    function getEventPrice() public view returns (uint256) {
+        return priceForEvent;
+    }  
 }
 
