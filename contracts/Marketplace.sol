@@ -12,11 +12,10 @@ contract ContractFactory {
     function createEventContract(string memory _nameOfEvent, uint _endTicketSale, string memory _aboutEvent, uint _priceForEvent, string memory _uri) public returns (address, address) {
         EventContract eventContract = new EventContract(_nameOfEvent, _endTicketSale, _aboutEvent, _priceForEvent, _uri);
         address eventAddress = address(eventContract);
-        address eventOwner = eventContract.owner();
         emit EventContractCreated(eventAddress, msg.sender);
         eventContracts.push(eventContract);
         eventContract.transferOwnership(msg.sender);
-        return (eventAddress, eventOwner);
+        return (eventAddress, msg.sender);
     }
 
     // Get the total number of created event contracts
