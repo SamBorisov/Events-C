@@ -23,6 +23,25 @@ contract EventContract is ERC1155, Ownable {
     bool public luckyWinnerChosen = false;
     address public luckyWinner;
 
+    bool private initialized;
+
+    function initialize(string memory _nameOfEvent, uint _endTicketSale, string memory _aboutEvent, uint _priceForEvent, string memory _uri) public {
+        // ensure that the contract hasn't already been initialized
+        require(!initialized, "contract already initialized");
+
+        // update state variables
+        nameOfEvent = _nameOfEvent;
+        startTicketSale = block.timestamp;
+        endTicketSale = block.timestamp + _endTicketSale;
+        aboutEvent = _aboutEvent;
+        priceForEvent = _priceForEvent;
+        uri = _uri;
+        uriBytes = abi.encodePacked(uri);
+
+        // set the value of initialized to true
+        initialized = true;
+    }
+
     constructor(string memory _nameOfEvent,  uint _endTicketSale, string memory _aboutEvent, uint _priceForEvent, string memory _uri) ERC1155(_uri) {
         nameOfEvent = _nameOfEvent;
         startTicketSale = block.timestamp;
@@ -70,7 +89,7 @@ contract EventContract is ERC1155, Ownable {
         require(addressList.length > 0, "No one has bought tickets");
         require(!luckyWinnerChosen, "Lucky winner already chosen");
         uint256 randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % addressList.length;
-        //uint256 randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % addressList.length;  //For remixIDE
+        // uint256 randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty))) % addressList.length;  //For remixIDE
         address winner = addressList[randomNumber];
         luckyWinner = winner;
         mint(winner, 1 , 1, uriBytes);
@@ -112,4 +131,3 @@ contract EventContract is ERC1155, Ownable {
     }  
 
 }
-
